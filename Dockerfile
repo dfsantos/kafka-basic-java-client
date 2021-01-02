@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY ./build/libs/java-client-1.0-SNAPSHOT.jar /app/app.jar
+COPY ./build/libs/java-client-*.jar /app/app.jar
 
 EXPOSE 8080
 
