@@ -1,12 +1,12 @@
 plugins {
-    id 'java'
+    id 'application'
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -14,6 +14,17 @@ dependencies {
     implementation 'org.apache.kafka:kafka-clients:2.6.0'
 }
 
-test {
-    useJUnitPlatform()
+application {
+    mainClassName = 'br.com.diegosantos.javaclient.App'
+}
+
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'br.com.diegosantos.javaclient.App'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
